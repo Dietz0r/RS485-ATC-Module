@@ -10,7 +10,7 @@ Written in MicroPython to allow for easy modification and adaption to other ESP3
 
 __Credits:__
 
-Using the [MicroPython Modbus library](https://github.com/brainelectronics/micropython-modbus) (Version: 2.3.7) by [brainelectronics](https://github.com/brainelectronics)(and being very thankfull for it existing!)
+Using the [MicroPython Modbus library](https://github.com/brainelectronics/micropython-modbus) (Version: 2.3.7) by [brainelectronics](https://github.com/brainelectronics) (and being very thankfull for it existing!)
 
 Much help from Drewnabobber - Expatria Technologies Inc.
 
