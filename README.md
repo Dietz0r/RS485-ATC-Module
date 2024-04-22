@@ -6,7 +6,7 @@ This is meant to be a standalone ATC module for the [Waveshare ESP32-S3-relay-6C
 
 Developed with help and for the [PrintNC community](https://wiki.printnc.info/en/home) alongside the [grblHAL2000](https://github.com/Expatria-Technologies/grblhal_2000_PrintNC) and [flexiHAL](https://expatria.myshopify.com/products/flexi-hal) by [Expatria Technologies Inc.](https://github.com/Expatria-Technologies) boards for [grblHAL](https://github.com/grblHAL) by [TerjeIO](https://github.com/terjeio) with RS485 ModbusRTU support
 
-Written in MicroPython to allow for easy modification and adaption to other ESP32 or MicroPython capable of the shelf boards.
+Written in MicroPython to allow for easy modification and adaption to other ESP32 or MicroPython capable 'off-the-shelf' boards.
 
 __Credits:__
 
