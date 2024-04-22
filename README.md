@@ -19,8 +19,16 @@ Much help from Drewnabobber - Expatria Technologies Inc.
 __Current Implemenation:__ 
 ```
     - RS485 Settings (DeviceID, Baudrate, DataBits, Parity, StopBits)
-    - 6 Relay Channels read and writeable as Coils on address 0x01 to 0x06
-    - Basic ARGB StatusLeds
+    - 6 Relay channels read and writeable as Coils on address 0x01 to 0x06
+    - Basic ARGB statusLeds
+```
+
+__Roadmap:__
+
+```
+    - Implement input registers for Spindle Clamp, Unclamp Sensors
+    - Implement button inputs for manual toolchange capability
+    - Additional control schemes for tool magazine options
 ```
 
 Git Commit - Minimum Viable Product: 22.04.2024 
