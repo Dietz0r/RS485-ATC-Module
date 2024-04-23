@@ -2,8 +2,8 @@ from Settings import Relay
 
 class RelayControl():
     def __init__(self):
-        self.Relay_Status = [False]*6  # Relay current status flag
-        for i in range(6):
+        self.Relay_Status = [False] * Relay.RelayNum  # Relay current status flag
+        for i in range(Relay.RelayNum):
             Relay.Channel[i].off()
         print(f'Reset relays on boot.')
 

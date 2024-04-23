@@ -3,6 +3,7 @@ from machine import Pin, PWM, UART
 class Relay():
     def __init__(self):
         ## Public Variables ##
+        self.RelayNum   : int = 6                   #Number of Relaychannels available
         # Define pins
         self.Relay1 = Pin(1, Pin.OUT)
         self.Relay2 = Pin(2, Pin.OUT)
@@ -21,18 +22,28 @@ class RS485():
         self.RX = 18
     
         # RS485 Settings (8n1 Default)
-        self.uart = 1
-        self.deviceID = 2
-        self.baudrate = 19200
-        self.Bits = 8
-        self.Parity = None
-        self.Stopbit = 1
+        self.uart       : int = 1
+        self.deviceID   : int = 2
+        self.baudrate   : int = 19200
+        self.Bits       : int = 8
+        self.Parity           = None
+        self.Stopbit    : int = 1
 
-class Sensor():
+class Sensors():
     def __init__(self):
         ## Public Variables ##
+        self.SensorNum  : int = 8                  # Number of Sensor Pins available
+        self.PullUpDown : any = Up                # use internal weak pull up or down resistor [Up / Down]
         # Define pins
-        self.dummysesnor = Pin(1, Pin.IN)
+        self.Sensor1 = Pin(3, Pin.IN)       # Spindle clamped sensor 
+        self.Sensor2 = Pin(4, Pin.IN)       # Spindle unclamped sensor
+        self.Sensor3 = Pin(5, Pin.IN)
+        self.Sensor4 = Pin(6, Pin.IN)
+        self.Sensor5 = Pin(7, Pin.IN)
+        self.Sensor6 = Pin(8, Pin.IN)
+        self.Sensor7 = Pin(9, Pin.IN)
+        self.Sensor8 = Pin(10, Pin.IN)
+        
 
 class Button():
     def __init__(self):

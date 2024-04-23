@@ -3,9 +3,8 @@ from lib.umodbus.serial import ModbusRTU
 
 #import settings and functions
 from Settings import RS485
-import Relay
-
-relay = Relay.RelayControl()
+from Relay import RelayControl as relay
+from Reporting import Report
 
 #define variables
 rtu_pins = (RS485.TX, rs485.RX)         # (TX, RX)
@@ -96,7 +95,55 @@ register_definitions = {
             "len": 1,
             "val": 0,
             "on_set_cb": relay.SetRelay
-        }    
+        } ,
+        "Sensor1": {
+            "register": 257,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": Report.Echo
+        },
+        "Sensor2": {
+            "register": 258,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": Report.Echo
+        },
+        "Sensor3": {
+            "register": 259,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": Report.Echo
+        },
+        "Sensor4": {
+            "register": 260,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": Report.Echo
+        },
+        "Sensor5": {
+            "register": 261,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": Report.Echo
+        },                                
+        "Sensor6": {
+            "register": 262,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": Report.Echo
+        },
+        "Sensor7": {
+            "register": 263,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": Report.Echo
+        },                                
+        "Sensor8": {
+            "register": 264,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": Report.Echo
+        }   
     },
     "HREGS": {
 #        "EXAMPLE_HREG": {
