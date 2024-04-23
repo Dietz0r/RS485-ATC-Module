@@ -30,15 +30,15 @@ __Roadmap:__
     - Implement button inputs for manual toolchange capability
     - Additional control schemes for tool magazine options
 ```
-___Register Adresses:__
+__Register Adresses:__
 
 ```
     - Relay Channels 1-6    - Modbus Register 1-6       (HexAddress: 0x0001 to 0x0006)
     - Sensor Inputs 1-8     - Modbus Register 257-264   (HexAddress: 0x0101 to 0x0108)
-``
+```
 
 ```
-    __Example Modbus Command to enable Relay 3 on Modbus Device ID 2:__
+    - Example Modbus Command to enable Relay 3 on Modbus Device ID 2:
 
         0x02 0x05 0x00 0x03 0xFF 0x00 0x7C 0x09
 
@@ -50,7 +50,7 @@ ___Register Adresses:__
     Sixth Byte: DATA LOW BIT                                        (0xFF00 to turn on relay)
     Seventh and eigth Byte: 16 bits CRC16 Checksum
 
-    __Example Modbus Command to Read Sensor 2 on Modbus Device ID 5:__
+    - Example Modbus Command to Read Sensor 2 on Modbus Device ID 5:
 
         0x05 0x01 0x01 0x02 0x00 0x01 0x5C 0x72
 
