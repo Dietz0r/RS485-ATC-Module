@@ -29,11 +29,13 @@ class RS485():
         self.Parity           = None
         self.Stopbit    : int = 1
 
-class Sensors():
+class SensorPins():
     def __init__(self):
         ## Public Variables ##
-        self.SensorNum  : int = 8                  # Number of Sensor Pins available
+        self.Timing     : int = 200               # check sensor pins ever 'x' ms
+        self.SensorNum  : int = 8                 # Number of Sensor Pins available
         self.PullUpDown : any = Up                # use internal weak pull up or down resistor [Up / Down]
+
         # Define pins
         self.Sensor1 = Pin(3, Pin.IN)       # Spindle clamped sensor 
         self.Sensor2 = Pin(4, Pin.IN)       # Spindle unclamped sensor
