@@ -34,7 +34,7 @@ class SensorPins():
         ## Public Variables ##
         self.Timing     : int = 200               # check sensor pins ever 'x' ms
         self.SensorNum  : int = 8                 # Number of Sensor Pins available
-        self.PullUpDown : str = 'Up'               # use internal weak pull up or down resistor [Up / Down]
+        self.PullUpDown : str = 'Up'              # use internal weak pull up or down resistor [Up / Down]
 
         # Define pins
         self.Sensor1 = Pin(3, Pin.IN)       # Spindle clamped sensor 

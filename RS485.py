@@ -2,18 +2,21 @@
 from lib.umodbus.serial import ModbusRTU
 
 #import settings and functions
-from Settings import RS485
+from Settings import RS485 as rs485
 from Relay import RelayControl as relay
-from Reporting import Report
+from Sensors import SensorHandling as sensors
+from Reporting import Report as report
+import RGBLed
+
 
 #define variables
-rtu_pins = (RS485.TX, rs485.RX)         # (TX, RX)
-slave_addr = RS485.deviceID             # address on bus as client
-baudrate = RS485.baudrate               # baudrate from settings
-uart_id = RS485.uart                    # uart channel from settings
-bits = RS485.Bits                       # DataBits from settings
-par = RS485.Parity                      # Parity from settings
-stop = RS485.Stopbit                    # StopBit from settings
+rtu_pins = (rs485.TX, rs485.RX)         # (TX, RX)
+slave_addr = rs485.deviceID             # address on bus as client
+baudrate = rs485.baudrate               # baudrate from settings
+uart_id = rs485.uart                    # uart channel from settings
+bits = rs485.Bits                       # DataBits from settings
+par = rs485.Parity                      # Parity from settings
+stop = rs485.Stopbit                    # StopBit from settings
 
 try:
     from machine import Pin
@@ -95,55 +98,13 @@ register_definitions = {
             "len": 1,
             "val": 0,
             "on_set_cb": relay.SetRelay
-        } ,
-        "Sensor1": {
-            "register": 257,
+        } ,        
+        "Update Inputs": {
+            "register": 256,
             "len": 1,
             "val": 0,
-            "on_get_cb": Report.Echo
-        },
-        "Sensor2": {
-            "register": 258,
-            "len": 1,
-            "val": 0,
-            "on_get_cb": Report.Echo
-        },
-        "Sensor3": {
-            "register": 259,
-            "len": 1,
-            "val": 0,
-            "on_get_cb": Report.Echo
-        },
-        "Sensor4": {
-            "register": 260,
-            "len": 1,
-            "val": 0,
-            "on_get_cb": Report.Echo
-        },
-        "Sensor5": {
-            "register": 261,
-            "len": 1,
-            "val": 0,
-            "on_get_cb": Report.Echo
-        },                                
-        "Sensor6": {
-            "register": 262,
-            "len": 1,
-            "val": 0,
-            "on_get_cb": Report.Echo
-        },
-        "Sensor7": {
-            "register": 263,
-            "len": 1,
-            "val": 0,
-            "on_get_cb": Report.Echo
-        },                                
-        "Sensor8": {
-            "register": 264,
-            "len": 1,
-            "val": 0,
-            "on_get_cb": Report.Echo
-        }   
+            "on_set_cb": sensors.Update
+        } 
     },
     "HREGS": {
 #        "EXAMPLE_HREG": {
@@ -153,11 +114,54 @@ register_definitions = {
 #        }
     },
       "ISTS": {
-#       "EXAMPLE_ISTS": {
-#            "register": 67,
-#            "len": 1,
-#            "val": 0
-#        }
+        "Sensor1": {
+            "register": 257,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": report.Sensor
+        },
+        "Sensor2": {
+            "register": 258,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": report.Sensor
+        },
+        "Sensor3": {
+            "register": 259,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": report.Sensor
+        },
+        "Sensor4": {
+            "register": 260,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": report.Sensor
+        },
+        "Sensor5": {
+            "register": 261,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": report.Sensor
+        },                                
+        "Sensor6": {
+            "register": 262,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": report.Sensor
+        },
+        "Sensor7": {
+            "register": 263,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": report.Sensor
+        },                                
+        "Sensor8": {
+            "register": 264,
+            "len": 1,
+            "val": 0,
+            "on_get_cb": report.Sensor
+        }  
     },
     "IREGS": {
 #        "EXAMPLE_IREG": {
@@ -181,6 +185,7 @@ print('Register setup done')
 
 print('Serving as RTU client on address {} at {} baud'.
       format(slave_addr, baudrate))
+RGBLed.setRGBsolid(10, 0, 0)
 
 while True:
     try:

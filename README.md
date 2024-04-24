@@ -52,10 +52,10 @@ __Register Adresses:__
 
     - Example Modbus Command to Read Sensor 2 on Modbus Device ID 5:
 
-        0x05 0x01 0x01 0x02 0x00 0x01 0x5C 0x72
+        0x05 0x02 0x01 0x02 0x00 0x01 0x18 0x72
 
     First Byte: Device ID                                           (DeviceID 5)
-    Second Byte: Function Code                                      (1 Read Coils)
+    Second Byte: Function Code                                      (2 Read Discrete Input)
     Third and Fourth Byte: Register Adress to Start reading from    (Register: 258)
     Fifth and Sixth Byte: How many Coils to read.                   (Read 1 Coil)
     Seventh and eigth Byte: 16 bits CRC16 Checksum                  
