@@ -6,11 +6,11 @@ class SensorHandling():
         # set up weak internal pull_up or pull_down resistors
         if SensorPins.PullUpDown == 'Up':
             for i in range(SensorPins.SensorNum):
-                SensorPins.Sensor[i+1].init(SensorPins.Sensor[i+1].PULL_UP)
+                SensorPins.Sensor[i].init(SensorPins.Sensor[i].PULL_UP)
                 print(f'Setting Sensorpins to internal Pull_Up mode')
         elif SensorPins.PullUpDown == 'Down':
             for i in range(SensorPins.SensorNum):
-                SensorPins.Sensor[i+1].init(SensorPins.Sensor[i+1].PULL_DOWN)
+                SensorPins.Sensor[i].init(SensorPins.Sensor[i].PULL_DOWN)
                 print(f'Setting Sensorpins to internal Pull_Down mode')
         else:
             print(f'Leaving SensorPins in default state.')

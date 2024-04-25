@@ -2,12 +2,16 @@
 from lib.umodbus.serial import ModbusRTU
 
 #import settings and functions
-from Settings import RS485 as rs485
-from Relay import RelayControl as relay
-from Sensors import SensorHandling as sensors
-from Reporting import Report as report
+from Settings import RS485
+from Relay import RelayControl
+from Sensors import SensorHandling
+from Reporting import Report
 import RGBLed
 
+rs485 = RS485()
+relay = RelayControl()
+sensors = SensorHandling()
+report = Report()
 
 #define variables
 rtu_pins = (rs485.TX, rs485.RX)         # (TX, RX)
@@ -118,49 +122,49 @@ register_definitions = {
             "register": 257,
             "len": 1,
             "val": 0,
-            "on_get_cb": report.Sensor
+            "on_get_cb": report.SensorRep
         },
         "Sensor2": {
             "register": 258,
             "len": 1,
             "val": 0,
-            "on_get_cb": report.Sensor
+            "on_get_cb": report.SensorRep
         },
         "Sensor3": {
             "register": 259,
             "len": 1,
             "val": 0,
-            "on_get_cb": report.Sensor
+            "on_get_cb": report.SensorRep
         },
         "Sensor4": {
             "register": 260,
             "len": 1,
             "val": 0,
-            "on_get_cb": report.Sensor
+            "on_get_cb": report.SensorRep
         },
         "Sensor5": {
             "register": 261,
             "len": 1,
             "val": 0,
-            "on_get_cb": report.Sensor
+            "on_get_cb": report.SensorRep
         },                                
         "Sensor6": {
             "register": 262,
             "len": 1,
             "val": 0,
-            "on_get_cb": report.Sensor
+            "on_get_cb": report.SensorRep
         },
         "Sensor7": {
             "register": 263,
             "len": 1,
             "val": 0,
-            "on_get_cb": report.Sensor
+            "on_get_cb": report.SensorRep
         },                                
         "Sensor8": {
             "register": 264,
             "len": 1,
             "val": 0,
-            "on_get_cb": report.Sensor
+            "on_get_cb": report.SensorRep
         }  
     },
     "IREGS": {

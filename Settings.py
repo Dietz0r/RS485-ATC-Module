@@ -45,6 +45,8 @@ class SensorPins():
         self.Sensor6 = Pin(8, Pin.IN)
         self.Sensor7 = Pin(9, Pin.IN)
         self.Sensor8 = Pin(10, Pin.IN)
+
+        self.Sensor = [self.Sensor1, self.Sensor2, self.Sensor3, self.Sensor4, self.Sensor5, self.Sensor6, self.Sensor7, self.Sensor8]
         
 
 class Button():

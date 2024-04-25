@@ -1,7 +1,7 @@
 from Sensors import SensorHandling as sensor
 
 class Report():
-    def Sensor(self, reg_type: any, address: int, val: list[bool]) -> None:
+    def SensorRep(self, reg_type: any, address: int, val: list[bool]) -> None:
         """Report Coil value to Terminal when read via Modbus given an address and a value via callback.
         Args:
             address (int): The address to change.
