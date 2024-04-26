@@ -6,4 +6,5 @@ import Sensors
 RGBLed.setRGBsolid(50, 100, 0)
 print('Starting RS485...')
 import RS485
-RGBLed.setRGBsolid(0, 0, 0)
+print('ModbusClient interruped, flashing warning LED')
+RGBLed.setRGBblink(0, 60, 0, 'forever')
