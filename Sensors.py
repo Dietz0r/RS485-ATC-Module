@@ -26,7 +26,7 @@ class SensorFunctions():
         """
         global client
         
-        if bool(SensorPins.Sensor[address-256].value()) == val[0]:
+        if bool(SensorPins.Sensor[address-257].value()) == val[0]:      #arrays start counting at 0, you numpty!
             print(f'Sensorpin {address-256}: no change')
         else:
             val[0] = not val[0]

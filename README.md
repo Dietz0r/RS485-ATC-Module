@@ -13,6 +13,7 @@ __Credits:__
 Using the [MicroPython Modbus library](https://github.com/brainelectronics/micropython-modbus) (Version: 2.3.7) by [brainelectronics](https://github.com/brainelectronics) (and being very thankfull for it existing!)
 
 Much help from Drewnabobber - Expatria Technologies Inc.
+Even more help, words of encouragement and swearing from JamesTheBard - sorry!
 
 ---
 
@@ -20,13 +21,13 @@ __Current Implemenation:__
 ```
     - RS485 Settings (DeviceID, Baudrate, DataBits, Parity, StopBits)
     - 6 Relay channels read and writeable as Coils
+    - 8 Sensor Input Channels (Including internal PullUp/Down setting) readable as Discrete Input Registers
     - Basic ARGB statusLeds
 ```
 
 __Roadmap:__
 
 ```
-    - Implement input registers for Spindle Clamp, Unclamp Sensors
     - Implement button inputs for manual toolchange capability
     - Additional control schemes for tool magazine options
 ```
@@ -57,10 +58,10 @@ __Register Adresses:__
     First Byte: Device ID                                           (DeviceID 5)
     Second Byte: Function Code                                      (2 Read Discrete Input)
     Third and Fourth Byte: Register Adress to Start reading from    (Register: 258)
-    Fifth and Sixth Byte: How many Coils to read.                   (Read 1 Coil)
+    Fifth and Sixth Byte: How many registers to read.                   (Read 1 Coil)
     Seventh and eigth Byte: 16 bits CRC16 Checksum                  
 
 ```
 
-
 Git Commit - Minimum Viable Product: 22.04.2024 
+Update - Sensors poll- and readable: 27.04.2024
