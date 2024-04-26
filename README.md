@@ -13,6 +13,7 @@ __Credits:__
 Using the [MicroPython Modbus library](https://github.com/brainelectronics/micropython-modbus) (Version: 2.3.7) by [brainelectronics](https://github.com/brainelectronics) (and being very thankfull for it existing!)
 
 Much help from Drewnabobber - Expatria Technologies Inc.
+
 Even more help, words of encouragement and swearing from JamesTheBard - sorry!
 
 ---
