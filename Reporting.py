@@ -8,6 +8,6 @@ class Report():
             val (list[bool]): The desired state of the relay.  Only the first value of the array is used, the rest are ignored.
             reg__type (any): Type of the register read.
         """
-        sensor.Update(address, val)
+        sensor.Update(reg_type, address, val)
         print(f'Read Sensor {address-256} as {reg_type} with value {val}.')
         

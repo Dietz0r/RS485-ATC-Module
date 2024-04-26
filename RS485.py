@@ -1,26 +1,12 @@
-# import modbus client classes
-from lib.umodbus.serial import ModbusRTU
-
 #import settings and functions
-from Settings import RS485
 from Relay import RelayControl
-from Sensors import SensorHandling
+from Sensors import SensorFunctions
 from Reporting import Report
 import RGBLed
 
-rs485 = RS485()
 relay = RelayControl()
-sensors = SensorHandling()
+sensors = SensorFunctions()
 report = Report()
-
-#define variables
-rtu_pins = (rs485.TX, rs485.RX)         # (TX, RX)
-slave_addr = rs485.deviceID             # address on bus as client
-baudrate = rs485.baudrate               # baudrate from settings
-uart_id = rs485.uart                    # uart channel from settings
-bits = rs485.Bits                       # DataBits from settings
-par = rs485.Parity                      # Parity from settings
-stop = rs485.Stopbit                    # StopBit from settings
 
 try:
     from machine import Pin
@@ -36,18 +22,8 @@ except AttributeError:
 except Exception as e:
     raise e
 
-print('Using pins {} with UART ID {}'.format(rtu_pins, uart_id))
-
-client = ModbusRTU(
-    addr = slave_addr,      # address on bus
-    pins = rtu_pins,        # given as tuple (TX, RX)
-    baudrate = baudrate,    # optional, default 9600
-    data_bits = bits,       # optional, default 8
-    stop_bits = stop,       # optional, default 1
-    parity = par,           # optional, default None
-    # ctrl_pin = 12,        # optional, control DE/RE
-    uart_id = uart_id       # optional, default 1, see port specific docs
-)
+from client import client, modbus_rtu_config
+print('Using pins {} with UART ID {}'.format(modbus_rtu_config["pins"], modbus_rtu_config["uart_id"]))
 
 def reset_data_registers_cb(reg_type, address, val):
     # usage of global isn't great, but okay for an example
@@ -188,7 +164,7 @@ client.setup_registers(registers=register_definitions)
 print('Register setup done')
 
 print('Serving as RTU client on address {} at {} baud'.
-      format(slave_addr, baudrate))
+      format(modbus_rtu_config["addr"], modbus_rtu_config["baudrate"]))
 RGBLed.setRGBsolid(10, 0, 0)
 
 while True:
