@@ -10,11 +10,9 @@ Written in MicroPython to allow for easy modification and adaption to other ESP3
 
 __Credits:__
 
-Using the [MicroPython Modbus library](https://github.com/brainelectronics/micropython-modbus) (Version: 2.3.7) by [brainelectronics](https://github.com/brainelectronics) (and being very thankfull for it existing!)
-
-Much help from Drewnabobber - Expatria Technologies Inc.
-
-Even more help, words of encouragement and swearing from JamesTheBard - sorry!
+Using the [MicroPython Modbus library](https://github.com/brainelectronics/micropython-modbus) (Version: 2.3.7) by [brainelectronics](https://github.com/brainelectronics) (and being very thankfull for it existing!)\
+Much help from Drewnabobber - Expatria Technologies Inc.\
+Even more help, words of encouragement and swearing from JamesTheBard - sorry!\
 
 ---
 
@@ -65,4 +63,4 @@ __Register Adresses:__
 ```
 
 Git Commit - Minimum Viable Product: 22.04.2024 
-Update - Sensors poll- and readable: 27.04.2024
+Update - Sensors poll- and readable: 27.04.2024\
