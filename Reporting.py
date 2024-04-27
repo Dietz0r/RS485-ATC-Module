@@ -1,4 +1,5 @@
-from Sensors import SensorHandling as sensor
+from Sensors import sensor_functions as sensor
+
 
 class Report():
     def SensorRep(self, reg_type: any, address: int, val: list[bool]) -> None:
@@ -8,6 +9,5 @@ class Report():
             val (list[bool]): The desired state of the relay.  Only the first value of the array is used, the rest are ignored.
             reg__type (any): Type of the register read.
         """
-        sensor.Update(reg_type, address, val)
+        sensor.update(reg_type, address, val)
         print(f'Read Sensor {address-256} as {reg_type} with value {val}.')
-        

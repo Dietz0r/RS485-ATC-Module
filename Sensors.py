@@ -1,24 +1,24 @@
 from machine import Pin
-from Settings import SensorPins
+from Settings import sensor_pin_settings
 from client import client
+from typing import Iterable
 
-SensorPins = SensorPins()
-
-## SensorSetup
-# set up weak internal pull_up or pull_down resistors
-if SensorPins.PullUpDown == 'Up':
-    for i in range(SensorPins.SensorNum):
-        SensorPins.Sensor[i].init(pull = SensorPins.Sensor[7].PULL_UP)
-    print(f'Setting Sensorpins to internal Pull_Up mode')
-elif SensorPins.PullUpDown == 'Down':
-    for i in range(SensorPins.SensorNum):
-        SensorPins.Sensor[i].init(pull = SensorPins.Sensor[7].PULL_DOWN)
-    print(f'Setting Sensorpins to internal Pull_Down mode')
-else:
-    print(f'Leaving SensorPins in default state.')
 
 class SensorFunctions():
-    def Update(self,reg_type: any, address: int, val: list[bool]):
+    sensors: Iterable[Pin]
+    
+    def __init__(self, pins: Iterable[Pin]):
+        self.sensors = self.build_sensors()
+        
+    def build_sensors(self, pins: Iterable[Pin]) -> tuple[Pin]:
+        if "pull_up_or_down" in sensor_pin_settings:
+            pull_up_down = sensor_pin_settings["pull_up_or_down"]
+            sensors = tuple(Pin(i, Pin.IN, pull_up_down) for i in pins)
+        else:
+            sensors = tuple(Pin(i, Pin.IN) for i in pins)
+        return sensors
+    
+    def update(self, reg_type: any, address: int, val: list[bool]):
         """Update the discrete input registers for the sensorpins via callback.
         Args:
             address (int): The sensor pin to update.
@@ -26,9 +26,14 @@ class SensorFunctions():
         """
         global client
         
-        if bool(SensorPins.Sensor[address-257].value()) == val[0]:      #arrays start counting at 0, you numpty!
-            print(f'Sensorpin {address-256}: no change')
-        else:
-            val[0] = not val[0]
-            client.set_ist(address, val)
-            print(f'Updated SensorPin {address} to state: {val}')
+        address = address - 257
+        if bool(self.sensors[address].value()) == val[0]:
+            print(f'Sensorpin {address + 1}: no change')
+            return
+        
+        val[0] = not val[0]
+        client.set_ist(address, val)
+        print(f'Updated SensorPin {address} to state: {val}')
+
+
+sensor_functions = SensorFunctions(sensors=sensor_pin_settings["sensor_pins"])

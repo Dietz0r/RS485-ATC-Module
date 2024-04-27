@@ -1,12 +1,10 @@
 #import settings and functions
-from Relay import RelayControl
-from Sensors import SensorFunctions
+from Sensors import sensor_functions as sensors
+from Settings import register_definitions
 from Reporting import Report
-import RGBLed
+from Relay import RelayControl
 
-relay = RelayControl()
-sensors = SensorFunctions()
-report = Report()
+import RGBLed
 
 try:
     from machine import Pin
@@ -25,6 +23,9 @@ except Exception as e:
 from client import client, modbus_rtu_config
 print('Using pins {} with UART ID {}'.format(modbus_rtu_config["pins"], modbus_rtu_config["uart_id"]))
 
+relay = RelayControl()
+report = Report()
+
 def reset_data_registers_cb(reg_type, address, val):
     # usage of global isn't great, but okay for an example
     global client
@@ -33,7 +34,6 @@ def reset_data_registers_cb(reg_type, address, val):
     print('Resetting register data to default values ...')
     client.setup_registers(registers=register_definitions)
     print('Default values restored')
-
 
 # common slave register setup, to be used with the Master example above
 register_definitions = {
@@ -83,7 +83,7 @@ register_definitions = {
             "register": 256,
             "len": 1,
             "val": 0,
-            "on_set_cb": sensors.Update
+            "on_set_cb": sensors.update
         } 
     },
     "HREGS": {
@@ -151,6 +151,7 @@ register_definitions = {
 #        }
     }
 }
+
 
 # reset all registers back to their default value with a callback
 register_definitions['COILS']['RESET_REGISTER_DATA_COIL']['on_set_cb'] = \
