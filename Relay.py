@@ -1,4 +1,6 @@
-from Settings import Relay as Relay
+from Settings import Relay
+
+Relay = Relay()
 
 class RelayControl():
     def __init__(self):

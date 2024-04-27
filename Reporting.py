@@ -1,4 +1,6 @@
-from Sensors import SensorHandling as sensor
+from Sensors import SensorFunctions
+
+sensor = SensorFunctions()
 
 class Report():
     def SensorRep(self, reg_type: any, address: int, val: list[bool]) -> None:
@@ -10,4 +12,3 @@ class Report():
         """
         sensor.Update(reg_type, address, val)
         print(f'Read Sensor {address-256} as {reg_type} with value {val}.')
-        
