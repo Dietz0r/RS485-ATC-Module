@@ -1,16 +1,14 @@
 from machine import Pin
 from Settings import sensor_pin_settings
 from client import client
-from typing import Iterable
 
 
 class SensorFunctions():
-    sensors: Iterable[Pin]
     
-    def __init__(self, pins: Iterable[Pin]):
-        self.sensors = self.build_sensors()
+    def __init__(self, pins):
+        self.sensors = self.build_sensors(pins)
         
-    def build_sensors(self, pins: Iterable[Pin]) -> tuple[Pin]:
+    def build_sensors(self, pins) -> tuple[Pin]:
         if "pull_up_or_down" in sensor_pin_settings:
             pull_up_down = sensor_pin_settings["pull_up_or_down"]
             sensors = tuple(Pin(i, Pin.IN, pull_up_down) for i in pins)
@@ -26,9 +24,8 @@ class SensorFunctions():
         """
         global client
         
-        address = address - 257
-        if bool(self.sensors[address].value()) == val[0]:
-            print(f'Sensorpin {address + 1}: no change')
+        if bool(self.sensors[address - 257].value()) == val[0]:
+            print(f'Sensorpin {address - 256}: no change')
             return
         
         val[0] = not val[0]
@@ -36,4 +33,4 @@ class SensorFunctions():
         print(f'Updated SensorPin {address} to state: {val}')
 
 
-sensor_functions = SensorFunctions(sensors=sensor_pin_settings["sensor_pins"])
+sensor_functions = SensorFunctions(pins=sensor_pin_settings["sensor_pins"])

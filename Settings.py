@@ -1,21 +1,21 @@
 from machine import Pin, PWM, UART
-from typing import Optional, Iterable
 
 
 class Relay:
     pin_definitions: list[int]
     relays: list[Pin]
     
-    def __init__(self, pin_definitions: Optional[Iterable[int]] = None):
+    def __init__(self, pin_definitions = None):
         if not pin_definitions:
             pin_definitions = (1, 2, 41, 42, 45, 46)
-        self.relays = map(lambda x: Pin(x, Pin.OUT), self.pin_definitions)
+        self.pin_definitions = pin_definitions
+        self.relays = list(map(lambda x: Pin(x, Pin.OUT), self.pin_definitions))
 
     @property
     def channels(self):
         return len(self.pin_definitions)
        
-    def get_channel(self, channel: int) -> Optional[Pin]:
+    def get_channel(self, channel: int):
         try:
             return self.relays[channel - 1]
         except IndexError:
@@ -36,7 +36,7 @@ rs485_settings = {
 sensor_pin_settings = {
     "timing": 200,
     "pull_up_or_down": Pin.PULL_UP,
-    "sensors_pins": range(3, 11),
+    "sensor_pins": range(3, 11),
 }
 
 misc_pin_settings = {

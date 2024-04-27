@@ -1,6 +1,5 @@
 #import settings and functions
 from Sensors import sensor_functions as sensors
-from Settings import register_definitions
 from Reporting import Report
 from Relay import RelayControl
 
@@ -47,37 +46,37 @@ register_definitions = {
             "register": 1,
             "len": 1,
             "val": 0,
-            "on_set_cb": relay.SetRelay
+            "on_set_cb": relay.set_relay
         },
         "Relay2": {
             "register": 2,
             "len": 1,
             "val": 0,
-            "on_set_cb": relay.SetRelay
+            "on_set_cb": relay.set_relay
         },
         "Relay3": {
             "register": 3,
             "len": 1,
             "val": 0,
-            "on_set_cb": relay.SetRelay
+            "on_set_cb": relay.set_relay
         },
         "Relay4": {
             "register": 4,
             "len": 1,
             "val": 0,
-            "on_set_cb": relay.SetRelay
+            "on_set_cb": relay.set_relay
         },
         "Relay5": {
             "register": 5,
             "len": 1,
             "val": 0,
-            "on_set_cb": relay.SetRelay
+            "on_set_cb": relay.set_relay
         },                                
         "Relay6": {
             "register": 6,
             "len": 1,
             "val": 0,
-            "on_set_cb": relay.SetRelay
+            "on_set_cb": relay.set_relay
         } ,        
         "Update Inputs": {
             "register": 256,

@@ -1,9 +1,10 @@
 from neopixel import NeoPixel
 from Settings import misc_pin_settings
+from machine import Pin
 import time
 
 argb = misc_pin_settings["argb"]
-rgb = NeoPixel(argb["pin"], argb["num_leds"])
+rgb = NeoPixel(Pin(argb["pin"], argb["in_out"]), argb["num_leds"])
 
 num_leds = argb["num_leds"]
 
@@ -18,7 +19,7 @@ def setRGBblink(g, r, b, blinks):
     if blinks == 'forever':  
         while True:
             try:
-                for i in range():
+                for i in range(num_leds):
                     rgb[i] = (g, r, b)
                 rgb.write()
                 time.sleep(0.5)
