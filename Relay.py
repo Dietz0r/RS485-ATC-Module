@@ -5,7 +5,7 @@ relay = Relay()
 
 class RelayControl:
     def __init__(self):
-        self.relay_status = [False] *   # Relay current status flag
+        self.relay_status = [False] * relay.channels  # Relay current status flag
         for i in range(relay.channels):
             # Relay.Channel[i].off()
             relay.get_channel(i).off()
